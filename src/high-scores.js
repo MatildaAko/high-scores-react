@@ -13,15 +13,17 @@ const HighScores = (props) => {
               <h2>{`HIGH SCORES: ${score.name}`}</h2>
               <table>
                 <thead>
-                  {score.scores.map((person, index) => {
-                    return (
-                      <tr key={index}>
-                        <td>
-                          {person.n}: {person.s}
-                        </td>
-                      </tr>
-                    );
-                  })}
+                  {score.scores
+                    .sort((a, b) => (a.s === b.s ? 0 : a.s < b.s ? 1 : -1))
+                    .map((person, index) => {
+                      return (
+                        <tr key={index}>
+                          <td>
+                            {person.n}: {person.s}
+                          </td>
+                        </tr>
+                      );
+                    })}
                 </thead>
               </table>
             </div>

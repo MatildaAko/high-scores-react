@@ -9,7 +9,7 @@ const HighScores = (props) => {
   let people = [];
   return (
     <div>
-      <h1>All HIGH SCORES</h1>
+      <h1>ALL HIGH SCORES</h1>
       <table>
         <thead>
           <tr>
@@ -19,21 +19,22 @@ const HighScores = (props) => {
           </tr>
         </thead>
         <tbody>
-          {props.scores
-            .map((country) => {
-              country.scores.map((person) => {
-                return people.push(person);
-              });
-            })}
-          {people.sort((a, b) => (a.s === b.s ? 0 : a.s < b.s ? 1 : -1)).map((person, index) => {
-            return (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{person.n}</td>
-                <td>{person.s}</td>
-              </tr>
-            );
+          {props.scores.forEach((country) => {
+            country.scores.map((person) => {
+              return people.push(person);
+            });
           })}
+          {people
+            .sort((a, b) => (a.s === b.s ? 0 : a.s < b.s ? 1 : -1))
+            .map((person, index) => {
+              return (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{person.n}</td>
+                  <td>{person.s}</td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
       <h1> HIGH SCORES BY COUNTRY</h1>
